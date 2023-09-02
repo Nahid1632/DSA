@@ -11,22 +11,22 @@ struct student* insertAtHead(struct student *head, int data);
 void insertAtEnd(struct student *head, int data);
 void search(struct student *head, int value);
 struct student* insertAtPosition(struct student *head, int position , int data);
-void delete(struct student *head, int position);
+struct student* delete(struct student *head, int position);
 
 int main(){
     struct student *head;
     head=(struct student*)malloc(sizeof(struct student));
-    head->id=1632;
+    head->id=1003;
     head->next=NULL;
 print(head);
 head = insertAtHead(head, 1199);
 insertAtEnd(head, 1219);
-head = insertAtPosition(head, 1, 1003);
+head = insertAtPosition(head, 1, 1445);
 head = insertAtPosition(head, 2, 1632);
 print(head);
-delete(head, 3);
-search(head, 1632);
-
+head = delete(head, 2);
+print(head);
+search(head, 1003);
 
   return 0;
 };
@@ -47,7 +47,7 @@ void search(struct student *head, int value){
   struct student *temp;
   temp=head;
   int a=1;
-  int flag=0;
+  int flag = 0;
   while(temp!=NULL)
   { 
    if (temp->id == value)
@@ -62,7 +62,7 @@ void search(struct student *head, int value){
    {
     printf("Found %d item in indax: %d\n", value, a);
    }
-  else if(flag==0)
+  else if(flag == 0)
   {
     printf("Not Found.\n");
   }
@@ -115,18 +115,26 @@ while(temp!=NULL)
 };
 
 // delete a linklist
-void delete(struct student *head, int position){
+struct student* delete(struct student *head, int position){
   struct student *temp=head;
-  int val=1;
-  while(temp!=NULL)
+  int val=2;
+  while(temp != NULL)
   {
-    if(val == position)
+    if(position == 1)
     {
+      printf("Deleted item %d Index: %d\n", temp->id, position);
+      temp=temp->next;
+      return temp;
+    }
+    else if(val == position)
+    {
+      printf("Deleted item %d Index: %d\n", temp->id, position);
       temp->next=temp->next->next;
-      printf("Deleted Index: %d\n",position);
-      return;
+      return temp;
     }
     val++;
     temp=temp->next;
   }
+  printf("Position not found\n");
+  return head;
   };
