@@ -24,7 +24,7 @@ insertAtEnd(head, 1219);
 head = insertAtPosition(head, 1, 1445);
 head = insertAtPosition(head, 2, 1632);
 print(head);
-head = delete(head, 2);
+head = delete(head, 1);
 print(head);
 search(head, 1003);
 
@@ -128,9 +128,9 @@ struct student* delete(struct student *head, int position){
     }
     else if(val == position)
     {
-      printf("Deleted item %d Index: %d\n", temp->id, position);
+      printf("Deleted item %d Index: %d\n", temp->next->id, position);
       temp->next=temp->next->next;
-      return temp;
+      return head;
     }
     val++;
     temp=temp->next;
